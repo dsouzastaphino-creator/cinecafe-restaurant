@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineCafe</title>
+    <meta name="description" content="CineCafe. Taste. Cinema. Atmosphere.">
+    <link rel="stylesheet" href="index.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="theme-sunlit">
+
+    <header class="navbar">
+        <div class="navbar-wrapper">
+            <div class="nav-menu-wrap">
+                <a href="/" class="navbar-logo-wrap">
+                    <div class="nav-logo">CINECAFE</div>
+                </a>
+                
+                <nav class="nav-desktop-links">
+                    <a href="#menu" class="nav-item">Menu</a>
+                    <a href="#dome" class="nav-item">Dome Theatre</a>
+                    <a href="#events" class="nav-item">Events</a>
+                    <a href="#kids" class="nav-item">Kids Zone</a>
+                    <a href="#contact" class="nav-item">Contact</a>
+                </nav>
+
+                <div class="nav-actions">
+                    <a href="#reserve" class="btn-primary nav-btn">Book Tickets</a>
+                    <a href="#menu" class="btn-secondary nav-btn">Reserve a Table</a>
+                    <div id="burger-toggle" class="burger-menu-wrap mobile-only">
+                        <div class="menu-line-top"></div>
+                        <div class="menu-line-bottom"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Full Screen Overlay Menu (Mobile/Tablet) -->
+    <div id="fullscreen-menu" class="fullscreen-menu">
+        <nav class="nav-links">
+            <div class="nav-links-wrapper">
+                <a href="#menu" class="nav-link">Menu</a>
+                <a href="#dome" class="nav-link">Dome Theatre</a>
+                <a href="#events" class="nav-link">Events</a>
+                <a href="#kids" class="nav-link">Kids Zone</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </nav>
+    </div>
+
+    <main>
+        <!-- Hero Scroll Sequence Container -->
+        <div class="hero-scroll-container">
+            <!-- Hero Section (Sticky) -->
+            <section class="hero-section">
+                <!-- Hero Background Image -->
+                <div class="hero-bg"></div>
+                
+                <!-- Cinematic Clouds -->
+                <img src="assets/cloud.png" class="cinematic-cloud cloud-left" aria-hidden="true" alt="">
+                <img src="assets/cloud.png" class="cinematic-cloud cloud-right" aria-hidden="true" alt="">
+
+                <!-- Scroll Sequence Hero Text -->
+                <div class="hero-typing-sequence">
+                    <span class="seq-word">Restaurant</span>
+                    <span class="seq-word">Movie</span>
+                    <span class="seq-word">Playground</span>
+                    <span class="seq-word">Party &amp; Chill</span>
+                </div>
+
+                <!-- GSAP Transition UI Overlay -->
+                <div id="gsap-ui-wrapper" class="gsap-ui-wrapper">
+                    <div class="gsap-blur-overlay"></div>
+                </div>
+
+                <div class="scroll-indicator">
+                    <span>Scroll to enter the Dome</span>
+                    <div class="line"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Sequence Section: All In One Place -->
+        <section class="dome-viewport">
+            <div class="dome-sticky-content">
+                <h2 class="all-in-one-title highlight">ALL IN ONE PLACE</h2>
+                
+                <div class="looking-for-container">
+                    <h3 class="looking-for-title">WHAT ARE YOU LOOKING FOR?</h3>
+                    <ul class="looking-options">
+                        <li>Menu</li>
+                        <li>Reserve Table</li>
+                        <li>Book an Event</li>
+                        <li>Book a Movie</li>
+                        <li>Contact Us</li>
+                        <li>About Us</li>
+                        <li>Our Story</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Screening Projection Visualizer -->
+        <section class="screening-projection">
+            <div class="section-container">
+                <h2>Field of View</h2>
+                <p>Simulate your perspective from different seating zones within the Dome.</p>
+
+                <div class="visualizer-container">
+                    <canvas id="projection-canvas" width="800" height="400"></canvas>
+
+                    <div class="slider-wrapper">
+                        <label for="seating-slider">Seating Zone (Row A to G)</label>
+                        <input type="range" id="seating-slider" min="0" max="100" value="50">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ticket Generation Section -->
+        <section id="reserve" class="ticket-section">
+            <div class="section-container">
+                <h2>Secure Your Admission</h2>
+                <p>Book a screening. Receive a beautifully typeset, generative digital ticket.</p>
+
+                <form id="ticket-form" class="minimal-form">
+                    <div class="form-group">
+                        <input type="text" id="guest-name" placeholder="Guest Name" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="screening-selection" required>
+                            <option value="" disabled selected>Select a Screening</option>
+                            <option value="2001: A Space Odyssey — 7:00 PM">2001: A Space Odyssey — 7:00 PM</option>
+                            <option value="Blade Runner: The Final Cut — 10:15 PM">Blade Runner: The Final Cut — 10:15
+                                PM</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-secondary">Generate Ticket</button>
+                </form>
+
+                <!-- Hidden ticket preview to be rendered to Canvas/PDF -->
+                <div id="ticket-wrapper" class="hidden">
+                    <div id="ticket-template" class="ticket-template">
+                        <div class="ticket-header">
+                            <h3>CineCafe</h3>
+                            <span class="ticket-id">ADM-000</span>
+                        </div>
+                        <div class="ticket-body">
+                            <div class="ticket-row">
+                                <span class="label">Guest</span>
+                                <span class="value" id="tkt-name"></span>
+                            </div>
+                            <div class="ticket-row">
+                                <span class="label">Screening</span>
+                                <span class="value" id="tkt-screening"></span>
+                            </div>
+                        </div>
+                        <div class="ticket-footer">
+                            <div class="barcode">|||| ||||| |||| || |||||</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="ticket-result" class="ticket-result"></div>
+
+            </div>
+        </section>
+
+        <!-- Section 4: Gourmet Culinary Experience -->
+        <section id="menu" class="gourmet-section">
+            <div class="section-container">
+                <div class="gourmet-header gsap-fade-up">
+                    <h2>A Taste of Cinema</h2>
+                    <p>Elevate your movie night. From signature cafe drinks to exclusive cinema combo platters, experience gourmet dining inside Kerala's first dome theatre.</p>
+                </div>
+                <div class="gourmet-grid">
+                    <div class="gourmet-card gsap-stagger-card">
+                        <div class="gourmet-img-placeholder"></div>
+                        <h3>Signature Cinema Combos</h3>
+                        <p>Gourmet popcorn, sliders, and craft sodas.</p>
+                    </div>
+                    <div class="gourmet-card gsap-stagger-card">
+                        <div class="gourmet-img-placeholder"></div>
+                        <h3>Artisan Cafe Drinks</h3>
+                        <p>Freshly roasted coffee and premium mocktails.</p>
+                    </div>
+                    <div class="gourmet-card gsap-stagger-card">
+                        <div class="gourmet-img-placeholder"></div>
+                        <h3>In-Theatre Dining</h3>
+                        <p>A full-course luxury meal delivered to your seat.</p>
+                    </div>
+                </div>
+                <div class="gourmet-cta gsap-fade-up">
+                    <a href="#menu" class="btn-primary">View Full Digital Menu</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Memorable Event Hosting & Celebrations -->
+        <section id="events" class="events-section">
+            <div class="section-container">
+                <div class="events-split">
+                    <div class="event-card kids-card gsap-slide-left">
+                        <div class="event-content">
+                            <h2>Kids Birthday Parties</h2>
+                            <p>Give your child a cinematic celebration. Complete with custom catering, games, and access to our massive playground.</p>
+                            <a href="#contact" class="btn-primary">Get a Quote</a>
+                        </div>
+                    </div>
+                    <div class="event-card corporate-card gsap-slide-right">
+                        <div class="event-content">
+                            <h2>Corporate & Private Events</h2>
+                            <p>Host exclusive private screenings or corporate meetings in our state-of-the-art dome with premium dining options.</p>
+                            <a href="#contact" class="btn-secondary">Check Availability</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Kids' Playground -->
+        <section id="kids" class="kids-section">
+            <div class="section-container kids-container gsap-fade-up">
+                <div class="kids-content">
+                    <h2>The Parent's Paradise</h2>
+                    <p>Enjoy your meal or movie in complete peace. Our massive, fully supervised indoor play zone gives your kids the time of their lives while you relax.</p>
+                    <a href="#kids" class="btn-primary">Explore Play Zone Rules & Packages</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Social Proof & Live Buzz -->
+        <section class="social-proof-section">
+            <div class="section-container">
+                <div class="social-split">
+                    <div class="social-grid gsap-slide-left">
+                        <div class="insta-post"></div>
+                        <div class="insta-post"></div>
+                        <div class="insta-post"></div>
+                        <div class="insta-post"></div>
+                    </div>
+                    <div class="testimonials gsap-slide-right">
+                        <h2>What People Say</h2>
+                        <div class="testimonial-card">
+                            <p>"The 360-degree dome is mind-blowing! Plus, having gourmet food brought to your seat makes it the best movie experience in Kerala."</p>
+                            <span>- Arjun K.</span>
+                        </div>
+                        <div class="testimonial-card">
+                            <p>"Hosted my daughter's 7th birthday here. The kids loved the playground and we loved the hassle-free service. Highly recommend!"</p>
+                            <span>- Meera S.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Location, Hours, & Quick FAQs -->
+        <section id="contact" class="info-faq-section">
+            <div class="section-container">
+                <div class="info-faq-split">
+                    <div class="info-column gsap-slide-left">
+                        <h2>Visit Us</h2>
+                        <div class="info-block">
+                            <h3>Address</h3>
+                            <p>123 Cinematic Way<br>Kochi, Kerala, India 682001</p>
+                        </div>
+                        <div class="info-block">
+                            <h3>Operating Hours</h3>
+                            <p>Mon - Thu: 10:00 AM - 11:00 PM<br>Fri - Sun: 10:00 AM - 1:00 AM</p>
+                        </div>
+                        <div class="map-placeholder">
+                            <span>Interactive Map Placeholder</span>
+                        </div>
+                    </div>
+                    <div class="faq-column gsap-slide-right">
+                        <h2>Quick FAQs</h2>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <button class="accordion-header">Can we eat inside the Dome?</button>
+                                <div class="accordion-content">
+                                    <p>Absolutely! We offer luxury in-theatre dining with our signature cinema combos and full-course meals.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <button class="accordion-header">How do we book a birthday party?</button>
+                                <div class="accordion-content">
+                                    <p>You can book an event directly through our website by requesting a quote or calling our events team.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <button class="accordion-header">Is there an entry fee for the playground?</button>
+                                <div class="accordion-content">
+                                    <p>Playground access is complimentary for dine-in and theatre guests for the first hour, with affordable packages for extended play.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="section-container footer-container">
+            <div class="footer-brand">
+                <h3>CINECAFE</h3>
+                <p>Taste. Cinema. Atmosphere.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="#menu">Menu</a>
+                <a href="#dome">Dome Theatre</a>
+                <a href="#events">Events</a>
+                <a href="#kids">Kids Zone</a>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Subscribe for Movie Premieres & Dining Offers</h4>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn-primary">Subscribe</button>
+                </form>
+                <div class="social-icons">
+                    <a href="#">IG</a>
+                    <a href="#">FB</a>
+                    <a href="#">TW</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 CineCafe. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- html2canvas for ticket generation (lightweight client-side rendering) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <!-- GSAP Core & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script src="main.js"></script>
+</body>
+
+</html>

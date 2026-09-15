@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - CineCafe</title>
+    <meta name="description" content="Curated Menu at CineCafe.">
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="theme-sunlit">
+    <header class="navbar">
+        <div class="navbar-wrapper">
+            <div class="nav-menu-wrap">
+                <a href="index.html" class="navbar-logo-wrap">
+                    <div class="nav-logo">CINECAFE</div>
+                </a>
+                <div id="burger-toggle" class="burger-menu-wrap">
+                    <div class="menu-line-top"></div>
+                    <div class="menu-line-bottom"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="fullscreen-menu" class="fullscreen-menu">
+        <nav class="nav-links">
+            <div class="nav-links-wrapper">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="menu.html" class="nav-link">Menu</a>
+                <a href="dome.html" class="nav-link">The Dome</a>
+                <a href="index.html#reserve" class="nav-link">Tickets</a>
+                <a href="#reserve-table" class="nav-link">Reserve a Table</a>
+                <a href="about.html" class="nav-link">About us</a>
+            </div>
+        </nav>
+    </div>
+
+    <main>
+        <section class="section-container" style="padding-top: 10rem; min-height: 70vh;">
+            <h2>Curated Menu</h2>
+            <p>Elevated cinema treats and artisanal coffee.</p>
+            <div style="margin-top: 4rem; display: grid; gap: 3rem;">
+                <div>
+                    <h3>Espresso & Filter</h3>
+                    <p style="margin-top: 0.5rem; opacity: 0.7;">Single origin beans roasted locally, carefully extracted.</p>
+                </div>
+                <div>
+                    <h3>Matcha & Botanicals</h3>
+                    <p style="margin-top: 0.5rem; opacity: 0.7;">Ceremonial grade and rare loose leaf varieties.</p>
+                </div>
+                <div>
+                    <h3>Cinema Snacks</h3>
+                    <p style="margin-top: 0.5rem; opacity: 0.7;">Truffle popcorn, dark chocolate almonds, and savory bites.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 CineCafe. All rights reserved.</p>
+    </footer>
+
+    <!-- GSAP Core & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
