@@ -3,57 +3,351 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Dome - CineCafe</title>
-    <meta name="description" content="Explore the architecture of the CineCafe Dome.">
-    <link rel="stylesheet" href="index.css">
+    <title>The Dome Theatre — CineCafe Kochi | Immersive 360° Cinema</title>
+    <meta name="description" content="Explore the CineCafe Dome Theatre — Kerala's first 360° immersive cinema. A 35-seat acoustically tuned dome with the finest projection technology in Kochi.">
+    <meta property="og:title" content="The Dome Theatre — CineCafe Kochi">
+    <meta property="og:description" content="Kerala's first immersive 360° dome cinema. 35 seats. Book yours today.">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .dome-page-hero {
+            padding-top: 10rem;
+            padding-bottom: var(--spacing-lg);
+            background: linear-gradient(180deg, #0d0d18 0%, #16213e 60%, var(--surface-color) 100%);
+            color: #ffffff;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dome-page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 100%, rgba(150,120,80,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .dome-page-hero .section-eyebrow { color: var(--color-accent-sunlit); }
+        .dome-page-hero h2 { color: #ffffff; margin-bottom: 1rem; }
+        .dome-page-hero p { color: rgba(255,255,255,0.75); margin: 0 auto 2.5rem; }
+
+        .dome-page-hero .btn-primary {
+            background: #ffffff;
+            color: #1a1a1a;
+            border-color: #ffffff;
+        }
+
+        .dome-page-hero .btn-primary:hover {
+            background: transparent;
+            color: #ffffff;
+        }
+
+        .dome-page-hero .btn-secondary {
+            border-color: rgba(255,255,255,0.5);
+            color: #ffffff;
+        }
+
+        .dome-page-hero .btn-secondary:hover {
+            background: #ffffff;
+            color: #1a1a1a;
+        }
+
+        .dome-hero-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .dome-specs {
+            background-color: var(--surface-color);
+        }
+
+        .dome-specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: var(--spacing-md);
+        }
+
+        .spec-card {
+            padding: 2rem;
+            border: 1px solid rgba(128,128,128,0.12);
+            border-radius: 16px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .spec-card:hover { transform: translateY(-5px); }
+
+        .spec-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .spec-card h3 {
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .spec-card p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            max-width: none;
+            opacity: 1;
+        }
+
+        .dome-experience {
+            background-color: var(--bg-color);
+        }
+
+        .dome-features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-top: var(--spacing-lg);
+        }
+
+        @media (min-width: 768px) {
+            .dome-features { grid-template-columns: 1fr 1fr; }
+        }
+
+        .dome-feature {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .dome-feature-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            border-radius: 12px;
+        }
+
+        .dome-feature h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .dome-feature p {
+            font-size: 0.9rem;
+            max-width: 320px;
+            opacity: 0.7;
+        }
+
+        .dome-cta {
+            background-color: var(--surface-color);
+            text-align: center;
+        }
+
+        .dome-cta h2 { margin-bottom: 1rem; }
+        .dome-cta p { margin: 0 auto 2.5rem; }
+
+        .dome-cta-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 480px) {
+            .dome-page-hero { padding-top: 8rem; }
+        }
+    </style>
 </head>
 <body class="theme-sunlit">
-    <header class="navbar">
+
+    <header class="navbar" role="banner">
         <div class="navbar-wrapper">
             <div class="nav-menu-wrap">
-                <a href="index.html" class="navbar-logo-wrap">
+                <a href="index.html" class="navbar-logo-wrap" aria-label="CineCafe — Go to homepage">
                     <div class="nav-logo">CINECAFE</div>
                 </a>
-                <div id="burger-toggle" class="burger-menu-wrap">
-                    <div class="menu-line-top"></div>
-                    <div class="menu-line-bottom"></div>
+                <nav class="nav-desktop-links" aria-label="Primary navigation">
+                    <a href="menu.html" class="nav-item">Menu</a>
+                    <a href="dome.html" class="nav-item" aria-current="page">Dome Theatre</a>
+                    <a href="index.html#events" class="nav-item">Events</a>
+                    <a href="index.html#kids" class="nav-item">Kids Zone</a>
+                    <a href="index.html#contact" class="nav-item">Contact</a>
+                </nav>
+                <div class="nav-actions">
+                    <a href="index.html#dome" class="btn-primary nav-btn">Book Tickets</a>
+                    <a href="index.html#reserve-table" class="btn-secondary nav-btn">Reserve a Table</a>
+                    <button id="burger-toggle" class="burger-menu-wrap mobile-only" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="fullscreen-menu">
+                        <span class="menu-line-top"></span>
+                        <span class="menu-line-bottom"></span>
+                    </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <div id="fullscreen-menu" class="fullscreen-menu">
-        <nav class="nav-links">
+    <div id="fullscreen-menu" class="fullscreen-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+        <nav class="nav-links" aria-label="Mobile navigation">
             <div class="nav-links-wrapper">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="menu.html" class="nav-link">Menu</a>
                 <a href="dome.html" class="nav-link">The Dome</a>
-                <a href="index.html#reserve" class="nav-link">Tickets</a>
-                <a href="#reserve-table" class="nav-link">Reserve a Table</a>
-                <a href="about.html" class="nav-link">About us</a>
+                <a href="index.html#events" class="nav-link">Events</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="mobile-menu-ctas">
+                <a href="index.html#dome" class="btn-primary mobile-cta-btn">Book Tickets</a>
+                <a href="index.html#reserve-table" class="btn-secondary mobile-cta-btn">Reserve a Table</a>
             </div>
         </nav>
     </div>
 
+    <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
     <main>
-        <section class="section-container" style="padding-top: 10rem; min-height: 70vh;">
-            <h2>The Architecture</h2>
-            <p>The Dome is an acoustically treated marvel designed to provide the ultimate immersive auditory and visual experience. With seating strictly limited to 35 guests per screening, every seat is optimized.</p>
-            
-            <div style="margin-top: 3rem; max-width: 600px; opacity: 0.8; line-height: 1.8;">
-                <p>Designed by acclaimed architects, the structure relies on a minimalist geometric frame paired with state-of-the-art projection technology. The curvature of the walls eliminates standing sound waves, resulting in crystalline audio fidelity.</p>
+        <section class="dome-page-hero">
+            <div class="section-container" style="padding-top: 0; padding-bottom: 0; position: relative; z-index: 1;">
+                <p class="section-eyebrow">Kerala's First</p>
+                <h2>The Dome Theatre</h2>
+                <p>A 35-seat acoustically treated marvel built for pure cinematic immersion. No bad seats. No distractions. Just you, the film, and a beautifully curved world of sound and image.</p>
+                <div class="dome-hero-btns">
+                    <a href="index.html#ticket-booking" class="btn-primary">Book Your Screening</a>
+                    <a href="index.html#dome" class="btn-secondary">See Showtimes</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="dome-specs">
+            <div class="section-container">
+                <p class="section-eyebrow gsap-fade-up" style="text-align:center;">Technical Specifications</p>
+                <h2 class="gsap-fade-up" style="text-align:center; margin-bottom: 0;">Built for the Best</h2>
+                <div class="dome-specs-grid">
+                    <div class="spec-card gsap-stagger-card">
+                        <span class="spec-icon">🎭</span>
+                        <h3>Seating Capacity</h3>
+                        <p>35 exclusive seats</p>
+                    </div>
+                    <div class="spec-card gsap-stagger-card">
+                        <span class="spec-icon">🌐</span>
+                        <h3>Projection Type</h3>
+                        <p>360° immersive dome</p>
+                    </div>
+                    <div class="spec-card gsap-stagger-card">
+                        <span class="spec-icon">🔊</span>
+                        <h3>Audio System</h3>
+                        <p>Dolby Surround 7.1</p>
+                    </div>
+                    <div class="spec-card gsap-stagger-card">
+                        <span class="spec-icon">🏛</span>
+                        <h3>Acoustic Design</h3>
+                        <p>Zero standing waves</p>
+                    </div>
+                    <div class="spec-card gsap-stagger-card">
+                        <span class="spec-icon">📐</span>
+                        <h3>Screen Size</h3>
+                        <p>Full hemispherical dome</p>
+                    </div>
+                    <div class="spec-card gsap-stagger-card">
+                        <span class="spec-icon">🌡</span>
+                        <h3>Climate</h3>
+                        <p>Independent HVAC control</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="dome-experience">
+            <div class="section-container">
+                <div class="gsap-fade-up">
+                    <p class="section-eyebrow">The Experience</p>
+                    <h2>What Makes It Different</h2>
+                </div>
+                <div class="dome-features">
+                    <div class="dome-feature gsap-slide-left">
+                        <div class="dome-feature-icon">🎬</div>
+                        <div>
+                            <h3>Curated Screenings</h3>
+                            <p>Every film is handpicked for its visual and sonic potential in an immersive dome setting. We don't screen just any film — we screen the right ones.</p>
+                        </div>
+                    </div>
+                    <div class="dome-feature gsap-slide-right">
+                        <div class="dome-feature-icon">🍿</div>
+                        <div>
+                            <h3>In-Seat Dining</h3>
+                            <p>Pre-order from our gourmet menu and your food is delivered quietly to your seat before the screening begins. Zero disruption.</p>
+                        </div>
+                    </div>
+                    <div class="dome-feature gsap-slide-left">
+                        <div class="dome-feature-icon">🎟</div>
+                        <div>
+                            <h3>Private Hire Available</h3>
+                            <p>Book the entire dome for anniversaries, proposals, corporate presentations, or private screenings of any film you choose.</p>
+                        </div>
+                    </div>
+                    <div class="dome-feature gsap-slide-right">
+                        <div class="dome-feature-icon">♿</div>
+                        <div>
+                            <h3>Fully Accessible</h3>
+                            <p>Wheelchair accessible entry, reserved spaces, and hearing loop support. The dome is for everyone.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="dome-cta">
+            <div class="section-container">
+                <p class="section-eyebrow">Ready?</p>
+                <h2>Secure Your Seat</h2>
+                <p>With only 35 seats per screening, we recommend booking at least 24 hours in advance. Walk-ins are welcome subject to availability.</p>
+                <div class="dome-cta-btns gsap-fade-up">
+                    <a href="index.html#ticket-booking" class="btn-primary">Book a Screening</a>
+                    <a href="index.html#contact-form" class="btn-secondary">Enquire About Private Hire</a>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="site-footer">
-        <p>&copy; 2026 CineCafe. All rights reserved.</p>
+    <footer class="site-footer" role="contentinfo">
+        <div class="section-container footer-container" style="padding-top: 0;">
+            <div class="footer-brand">
+                <h3>CINECAFE</h3>
+                <p>Taste. Cinema. Atmosphere.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="index.html#events">Events</a>
+                <a href="index.html#kids">Kids Zone</a>
+                <a href="about.html">About Us</a>
+            </div>
+            <div class="footer-links">
+                <h4>Book</h4>
+                <a href="index.html#ticket-booking">Buy Tickets</a>
+                <a href="index.html#reserve-table">Reserve a Table</a>
+                <a href="https://wa.me/919876543210" target="_blank" rel="noopener">WhatsApp Us</a>
+                <a href="tel:+919876543210">+91 98765 43210</a>
+            </div>
+            <div class="footer-newsletter" style="display:none;"></div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 CineCafe. All rights reserved.</p>
+        </div>
     </footer>
 
-    <!-- GSAP Core & ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="main.js"></script>

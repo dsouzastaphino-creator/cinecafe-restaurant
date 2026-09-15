@@ -4,28 +4,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineCafe</title>
-    <meta name="description" content="CineCafe. Taste. Cinema. Atmosphere.">
-    <link rel="stylesheet" href="styles.css">
+    <title>CineCafe Kochi — Kerala's First Dome Theatre, Restaurant & Entertainment Venue</title>
+    <meta name="description" content="CineCafe is Kerala's first immersive dome theatre fused with a gourmet restaurant in Kochi. Book a screening, reserve a table, host events & birthday parties. Taste. Cinema. Atmosphere.">
 
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.cinecafe.in/">
+    <meta property="og:title" content="CineCafe Kochi — Dome Theatre & Restaurant">
+    <meta property="og:description" content="Kerala's first immersive dome theatre fused with a gourmet restaurant. Book tickets, reserve a table, host events.">
+    <meta property="og:image" content="assets/Hero BG/CINECAFE HERO.jpg">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="CineCafe Kochi — Dome Theatre & Restaurant">
+    <meta property="twitter:description" content="Kerala's first immersive dome theatre fused with a gourmet restaurant.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.cinecafe.in/">
+
+    <!-- Preconnect to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Preload hero image for LCP -->
+    <link rel="preload" as="image" href="assets/Hero BG/CINECAFE HERO.jpg">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["Restaurant", "LocalBusiness"],
+          "name": "CineCafe",
+          "description": "Kerala's first dome theatre and gourmet restaurant. Immersive cinema dining in Kochi.",
+          "url": "https://www.cinecafe.in",
+          "telephone": "+91-9876543210",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "123 Cinematic Way",
+            "addressLocality": "Kochi",
+            "addressRegion": "Kerala",
+            "postalCode": "682001",
+            "addressCountry": "IN"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "9.9312",
+            "longitude": "76.2673"
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday"],
+              "opens": "10:00",
+              "closes": "23:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Friday","Saturday","Sunday"],
+              "opens": "10:00",
+              "closes": "01:00"
+            }
+          ],
+          "servesCuisine": ["Indian", "Continental", "Cafe"],
+          "priceRange": "₹₹₹",
+          "hasMap": "https://maps.google.com/?q=CineCafe+Kochi"
+        },
+        {
+          "@type": "MovieTheater",
+          "name": "CineCafe Dome Theatre",
+          "description": "A 35-seat immersive dome theatre with 360-degree projection in Kochi, Kerala.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Kochi",
+            "addressRegion": "Kerala",
+            "addressCountry": "IN"
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body class="theme-sunlit">
 
-    <header class="navbar">
+    <!-- Hidden H1 for SEO & screen readers -->
+    <h1 class="sr-only">CineCafe Kochi — Kerala's First Dome Theatre, Gourmet Restaurant & Entertainment Venue</h1>
+
+    <header class="navbar" role="banner">
         <div class="navbar-wrapper">
             <div class="nav-menu-wrap">
-                <a href="/" class="navbar-logo-wrap">
+                <a href="/" class="navbar-logo-wrap" aria-label="CineCafe — Go to homepage">
                     <div class="nav-logo">CINECAFE</div>
                 </a>
-                
-                <nav class="nav-desktop-links">
-                    <a href="#menu" class="nav-item">Menu</a>
+
+                <nav class="nav-desktop-links" aria-label="Primary navigation">
+                    <a href="menu.html" class="nav-item">Menu</a>
                     <a href="#dome" class="nav-item">Dome Theatre</a>
                     <a href="#events" class="nav-item">Events</a>
                     <a href="#kids" class="nav-item">Kids Zone</a>
@@ -33,122 +109,282 @@
                 </nav>
 
                 <div class="nav-actions">
-                    <a href="#reserve" class="btn-primary nav-btn">Book Tickets</a>
-                    <a href="#menu" class="btn-secondary nav-btn">Reserve a Table</a>
-                    <div id="burger-toggle" class="burger-menu-wrap mobile-only">
-                        <div class="menu-line-top"></div>
-                        <div class="menu-line-bottom"></div>
-                    </div>
+                    <a href="#dome" class="btn-primary nav-btn" id="nav-book-tickets">Book Tickets</a>
+                    <a href="#reserve-table" class="btn-secondary nav-btn" id="nav-reserve-table">Reserve a Table</a>
+                    <button id="burger-toggle" class="burger-menu-wrap mobile-only" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="fullscreen-menu">
+                        <span class="menu-line-top"></span>
+                        <span class="menu-line-bottom"></span>
+                    </button>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Full Screen Overlay Menu (Mobile/Tablet) -->
-    <div id="fullscreen-menu" class="fullscreen-menu">
-        <nav class="nav-links">
+    <div id="fullscreen-menu" class="fullscreen-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+        <nav class="nav-links" aria-label="Mobile navigation">
             <div class="nav-links-wrapper">
-                <a href="#menu" class="nav-link">Menu</a>
+                <a href="menu.html" class="nav-link">Menu</a>
                 <a href="#dome" class="nav-link">Dome Theatre</a>
                 <a href="#events" class="nav-link">Events</a>
                 <a href="#kids" class="nav-link">Kids Zone</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
+            <div class="mobile-menu-ctas">
+                <a href="#dome" class="btn-primary mobile-cta-btn">Book Tickets</a>
+                <a href="#reserve-table" class="btn-secondary mobile-cta-btn">Reserve a Table</a>
+            </div>
         </nav>
     </div>
 
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/919876543210?text=Hi%20CineCafe!%20I'd%20like%20to%20make%20a%20booking." 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Chat with us on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
     <main>
-        <!-- Hero Scroll Sequence Container -->
+        <!-- ===================================================
+             SECTION 1: Hero Scroll Sequence Container
+             =================================================== -->
         <div class="hero-scroll-container">
             <!-- Hero Section (Sticky) -->
-            <section class="hero-section">
+            <section class="hero-section" aria-label="Hero — CineCafe intro">
                 <!-- Hero Background Image -->
-                <div class="hero-bg"></div>
-                
+                <div class="hero-bg" role="img" aria-label="CineCafe venue atmosphere"></div>
+
                 <!-- Cinematic Clouds -->
-                <img src="assets/cloud.png" class="cinematic-cloud cloud-left" aria-hidden="true" alt="">
-                <img src="assets/cloud.png" class="cinematic-cloud cloud-right" aria-hidden="true" alt="">
+                <img src="assets/cloud.webp" class="cinematic-cloud cloud-left" aria-hidden="true" alt="" loading="eager">
+                <img src="assets/cloud.webp" class="cinematic-cloud cloud-right" aria-hidden="true" alt="" loading="eager">
 
                 <!-- Scroll Sequence Hero Text -->
-                <div class="hero-typing-sequence">
+                <div class="hero-typing-sequence" aria-hidden="true">
                     <span class="seq-word">Restaurant</span>
                     <span class="seq-word">Movie</span>
                     <span class="seq-word">Playground</span>
-                    <span class="seq-word">Party &amp; Chill</span>
+                    <span class="seq-word highlight">Party &amp; Chill</span>
                 </div>
 
                 <!-- GSAP Transition UI Overlay -->
-                <div id="gsap-ui-wrapper" class="gsap-ui-wrapper">
+                <div id="gsap-ui-wrapper" class="gsap-ui-wrapper" aria-hidden="true">
                     <div class="gsap-blur-overlay"></div>
                 </div>
 
-                <div class="scroll-indicator">
-                    <span>Scroll to enter the Dome</span>
+                <!-- Persistent Hero CTA (fades in after sequence) -->
+                <div class="hero-persistent-cta" id="hero-persistent-cta" aria-hidden="true">
+                    <a href="#dome" class="btn-hero-primary">Book a Screening Tonight</a>
+                    <a href="#reserve-table" class="btn-hero-secondary">Reserve a Table</a>
+                </div>
+
+                <div class="scroll-indicator" aria-hidden="true">
+                    <span>Scroll to explore</span>
                     <div class="line"></div>
                 </div>
             </section>
         </div>
 
-        <!-- Sequence Section: All In One Place -->
-        <section class="dome-viewport">
+        <!-- ===================================================
+             SECTION 2: All In One Place — Intent Disambiguation
+             =================================================== -->
+        <section class="dome-viewport" aria-label="What are you looking for?">
             <div class="dome-sticky-content">
-                <h2 class="all-in-one-title highlight">ALL IN ONE PLACE</h2>
-                
+                <h2 class="all-in-one-title highlight" aria-hidden="true">ALL IN ONE PLACE</h2>
+
                 <div class="looking-for-container">
-                    <h3 class="looking-for-title">WHAT ARE YOU LOOKING FOR?</h3>
-                    <ul class="looking-options">
-                        <li>Menu</li>
-                        <li>Reserve Table</li>
-                        <li>Book an Event</li>
-                        <li>Book a Movie</li>
-                        <li>Contact Us</li>
-                        <li>About Us</li>
-                        <li>Our Story</li>
+                    <h3 class="looking-for-title" aria-hidden="true">WHAT ARE YOU LOOKING FOR?</h3>
+                    <ul class="looking-options" role="list" aria-label="Navigation shortcuts">
+                        <li role="none"><a href="menu.html" class="option-link">Menu</a></li>
+                        <li role="none"><a href="#reserve-table" class="option-link">Reserve Table</a></li>
+                        <li role="none"><a href="#events" class="option-link">Book an Event</a></li>
+                        <li role="none"><a href="#dome" class="option-link">Book a Movie</a></li>
+                        <li role="none"><a href="#contact" class="option-link">Contact Us</a></li>
+                        <li role="none"><a href="about.html" class="option-link">About Us</a></li>
+                        <li role="none"><a href="#kids" class="option-link">Kids Zone</a></li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Interactive Screening Projection Visualizer -->
-        <section class="screening-projection">
+        <!-- ===================================================
+             SECTION 3: Dome Theatre — Showtimes & Booking
+             =================================================== -->
+        <section id="dome" class="dome-section">
             <div class="section-container">
-                <h2>Field of View</h2>
-                <p>Simulate your perspective from different seating zones within the Dome.</p>
+                <div class="dome-header gsap-fade-up">
+                    <p class="section-eyebrow">Kerala's First</p>
+                    <h2>The Dome Theatre</h2>
+                    <p class="dome-subtext">A 35-seat acoustically treated marvel with 360° immersive projection. Every seat is the best seat.</p>
+                </div>
 
-                <div class="visualizer-container">
-                    <canvas id="projection-canvas" width="800" height="400"></canvas>
+                <!-- Showtimes Grid -->
+                <div class="showtimes-section gsap-fade-up">
+                    <div class="showtimes-header">
+                        <h3 class="showtimes-title">Now Screening</h3>
+                        <p class="showtimes-date">September 2026</p>
+                    </div>
 
-                    <div class="slider-wrapper">
-                        <label for="seating-slider">Seating Zone (Row A to G)</label>
-                        <input type="range" id="seating-slider" min="0" max="100" value="50">
+                    <div class="showtimes-grid">
+                        <article class="showtime-card" data-film="2001: A Space Odyssey" data-time="7:00 PM" data-date="Sep 16">
+                            <div class="showtime-poster" style="background: linear-gradient(135deg, #1a0a2e 0%, #16213e 50%, #0f3460 100%);">
+                                <span class="showtime-year">1968</span>
+                            </div>
+                            <div class="showtime-info">
+                                <h4>2001: A Space Odyssey</h4>
+                                <p class="showtime-director">Stanley Kubrick</p>
+                                <div class="showtime-meta">
+                                    <span class="showtime-badge">Tonight</span>
+                                    <span class="showtime-time">7:00 PM</span>
+                                </div>
+                                <p class="showtime-price">From <strong>₹499</strong></p>
+                                <a href="#ticket-booking" class="btn-showtime" data-film="2001: A Space Odyssey — Sep 16, 7:00 PM">Book This Show</a>
+                            </div>
+                        </article>
+
+                        <article class="showtime-card" data-film="Blade Runner: The Final Cut" data-time="10:15 PM" data-date="Sep 16">
+                            <div class="showtime-poster" style="background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 50%, #16213e 100%);">
+                                <span class="showtime-year">1982</span>
+                            </div>
+                            <div class="showtime-info">
+                                <h4>Blade Runner: The Final Cut</h4>
+                                <p class="showtime-director">Ridley Scott</p>
+                                <div class="showtime-meta">
+                                    <span class="showtime-badge">Tonight</span>
+                                    <span class="showtime-time">10:15 PM</span>
+                                </div>
+                                <p class="showtime-price">From <strong>₹499</strong></p>
+                                <a href="#ticket-booking" class="btn-showtime" data-film="Blade Runner: The Final Cut — Sep 16, 10:15 PM">Book This Show</a>
+                            </div>
+                        </article>
+
+                        <article class="showtime-card" data-film="Spirited Away" data-time="3:00 PM" data-date="Sep 17">
+                            <div class="showtime-poster" style="background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 50%, #40916c 100%);">
+                                <span class="showtime-year">2001</span>
+                            </div>
+                            <div class="showtime-info">
+                                <h4>Spirited Away</h4>
+                                <p class="showtime-director">Hayao Miyazaki</p>
+                                <div class="showtime-meta">
+                                    <span class="showtime-badge showtime-badge--tomorrow">Tomorrow</span>
+                                    <span class="showtime-time">3:00 PM</span>
+                                </div>
+                                <p class="showtime-price">From <strong>₹399</strong></p>
+                                <a href="#ticket-booking" class="btn-showtime" data-film="Spirited Away — Sep 17, 3:00 PM">Book This Show</a>
+                            </div>
+                        </article>
+
+                        <article class="showtime-card" data-film="Interstellar" data-time="7:30 PM" data-date="Sep 17">
+                            <div class="showtime-poster" style="background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #16213e 100%);">
+                                <span class="showtime-year">2014</span>
+                            </div>
+                            <div class="showtime-info">
+                                <h4>Interstellar</h4>
+                                <p class="showtime-director">Christopher Nolan</p>
+                                <div class="showtime-meta">
+                                    <span class="showtime-badge showtime-badge--tomorrow">Tomorrow</span>
+                                    <span class="showtime-time">7:30 PM</span>
+                                </div>
+                                <p class="showtime-price">From <strong>₹599</strong></p>
+                                <a href="#ticket-booking" class="btn-showtime" data-film="Interstellar — Sep 17, 7:30 PM">Book This Show</a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- Projection Visualizer -->
+                <div class="screening-projection gsap-fade-up">
+                    <h3>Explore Your View</h3>
+                    <p>Simulate your perspective from different seating zones within the Dome.</p>
+                    <div class="visualizer-container">
+                        <canvas id="projection-canvas" width="800" height="400" role="img" aria-label="Interactive dome seating view simulator"></canvas>
+                        <div class="slider-wrapper">
+                            <label for="seating-slider">Seating Zone — Row <span id="current-row-label">D</span></label>
+                            <input type="range" id="seating-slider" min="0" max="100" value="50" aria-label="Adjust seating row from A (front) to G (back)">
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Ticket Generation Section -->
-        <section id="reserve" class="ticket-section">
+        <!-- ===================================================
+             SECTION 4: Ticket Booking
+             =================================================== -->
+        <section id="ticket-booking" class="ticket-section">
             <div class="section-container">
-                <h2>Secure Your Admission</h2>
-                <p>Book a screening. Receive a beautifully typeset, generative digital ticket.</p>
+                <div class="ticket-layout">
+                    <div class="ticket-form-side gsap-slide-left">
+                        <p class="section-eyebrow">Reserve Your Seat</p>
+                        <h2>Book Your Screening</h2>
+                        <p>Select a film, choose your seats, and receive a beautifully typeset digital ticket.</p>
 
-                <form id="ticket-form" class="minimal-form">
-                    <div class="form-group">
-                        <input type="text" id="guest-name" placeholder="Guest Name" required>
+                        <form id="ticket-form" class="minimal-form" novalidate>
+                            <div class="form-group">
+                                <label for="guest-name" class="form-label">Guest Name</label>
+                                <input type="text" id="guest-name" placeholder="Your full name" required autocomplete="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="guest-phone" class="form-label">Phone / WhatsApp</label>
+                                <input type="tel" id="guest-phone" placeholder="+91 98765 43210" autocomplete="tel">
+                            </div>
+                            <div class="form-group">
+                                <label for="screening-selection" class="form-label">Choose Screening</label>
+                                <select id="screening-selection" required>
+                                    <option value="" disabled selected>Select a film &amp; showtime</option>
+                                    <optgroup label="Tonight — Sep 16">
+                                        <option value="2001: A Space Odyssey — Sep 16, 7:00 PM | ₹499/seat">2001: A Space Odyssey — 7:00 PM</option>
+                                        <option value="Blade Runner: The Final Cut — Sep 16, 10:15 PM | ₹499/seat">Blade Runner: Final Cut — 10:15 PM</option>
+                                    </optgroup>
+                                    <optgroup label="Tomorrow — Sep 17">
+                                        <option value="Spirited Away — Sep 17, 3:00 PM | ₹399/seat">Spirited Away — 3:00 PM</option>
+                                        <option value="Interstellar — Sep 17, 7:30 PM | ₹599/seat">Interstellar — 7:30 PM</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div class="form-group seats-group">
+                                <label class="form-label">Number of Seats</label>
+                                <div class="seat-counter" role="group" aria-label="Select number of seats">
+                                    <button type="button" id="seat-minus" class="seat-btn" aria-label="Decrease seats">−</button>
+                                    <span id="seat-count" class="seat-number" aria-live="polite" aria-atomic="true">2</span>
+                                    <button type="button" id="seat-plus" class="seat-btn" aria-label="Increase seats">+</button>
+                                </div>
+                                <p class="seat-max-note">Max 6 seats per booking. Venue capacity: 35 seats.</p>
+                            </div>
+                            <div class="ticket-add-dining">
+                                <label class="dining-toggle-label">
+                                    <input type="checkbox" id="add-dining" class="dining-checkbox">
+                                    <span class="dining-toggle-text">
+                                        <span class="dining-toggle-title">🍿 Add In-Seat Cinema Combo</span>
+                                        <span class="dining-toggle-sub">Gourmet popcorn, sliders &amp; craft soda delivered to your seat (+₹299/person)</span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="ticket-price-summary" id="price-summary" aria-live="polite">
+                                <span class="price-label">Estimated Total</span>
+                                <span class="price-value" id="estimated-price">Select a screening to see pricing</span>
+                            </div>
+                            <button type="submit" class="btn-primary btn-ticket-submit" id="generate-ticket-btn">
+                                Generate My Ticket
+                            </button>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <select id="screening-selection" required>
-                            <option value="" disabled selected>Select a Screening</option>
-                            <option value="2001: A Space Odyssey — 7:00 PM">2001: A Space Odyssey — 7:00 PM</option>
-                            <option value="Blade Runner: The Final Cut — 10:15 PM">Blade Runner: The Final Cut — 10:15
-                                PM</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn-secondary">Generate Ticket</button>
-                </form>
 
-                <!-- Hidden ticket preview to be rendered to Canvas/PDF -->
-                <div id="ticket-wrapper" class="hidden">
+                    <div class="ticket-preview-side gsap-slide-right">
+                        <div class="ticket-preview-placeholder" id="ticket-preview-area">
+                            <div class="ticket-preview-empty">
+                                <div class="ticket-preview-icon">🎟</div>
+                                <p>Your digital ticket will appear here</p>
+                            </div>
+                        </div>
+                        <div id="ticket-result" class="ticket-result"></div>
+                    </div>
+                </div>
+
+                <!-- Hidden ticket template for html2canvas rendering -->
+                <div id="ticket-wrapper" class="hidden" aria-hidden="true">
                     <div id="ticket-template" class="ticket-template">
                         <div class="ticket-header">
                             <h3>CineCafe</h3>
@@ -163,111 +399,286 @@
                                 <span class="label">Screening</span>
                                 <span class="value" id="tkt-screening"></span>
                             </div>
+                            <div class="ticket-row">
+                                <span class="label">Seats</span>
+                                <span class="value" id="tkt-seats"></span>
+                            </div>
+                            <div class="ticket-row" id="tkt-dining-row">
+                                <span class="label">Add-on</span>
+                                <span class="value" id="tkt-dining"></span>
+                            </div>
                         </div>
                         <div class="ticket-footer">
                             <div class="barcode">|||| ||||| |||| || |||||</div>
+                            <p class="ticket-venue">CineCafe, 123 Cinematic Way, Kochi 682001</p>
                         </div>
                     </div>
                 </div>
-
-                <div id="ticket-result" class="ticket-result"></div>
-
             </div>
         </section>
 
-        <!-- Section 4: Gourmet Culinary Experience -->
+        <!-- ===================================================
+             SECTION 5: Gourmet Culinary Experience
+             =================================================== -->
         <section id="menu" class="gourmet-section">
             <div class="section-container">
                 <div class="gourmet-header gsap-fade-up">
+                    <p class="section-eyebrow">The CineCafe Kitchen</p>
                     <h2>A Taste of Cinema</h2>
                     <p>Elevate your movie night. From signature cafe drinks to exclusive cinema combo platters, experience gourmet dining inside Kerala's first dome theatre.</p>
                 </div>
                 <div class="gourmet-grid">
                     <div class="gourmet-card gsap-stagger-card">
-                        <div class="gourmet-img-placeholder"></div>
-                        <h3>Signature Cinema Combos</h3>
-                        <p>Gourmet popcorn, sliders, and craft sodas.</p>
+                        <div class="gourmet-img" style="background-image: url('assets/HERO PAGE MENU/generous-spread-various-gourmet-food-dishes-presented-dark-green-cast-iron-pots-warm-wooden-table-assortment-424657952.webp');"></div>
+                        <div class="gourmet-card-body">
+                            <h3>Signature Cinema Combos</h3>
+                            <p>Gourmet popcorn, sliders, and craft sodas. Curated for the screen.</p>
+                            <span class="gourmet-price">From ₹299</span>
+                        </div>
                     </div>
                     <div class="gourmet-card gsap-stagger-card">
-                        <div class="gourmet-img-placeholder"></div>
-                        <h3>Artisan Cafe Drinks</h3>
-                        <p>Freshly roasted coffee and premium mocktails.</p>
+                        <div class="gourmet-img" style="background-image: url('assets/HERO PAGE MENU/smdvfyvef.jpg');"></div>
+                        <div class="gourmet-card-body">
+                            <h3>Artisan Cafe Drinks</h3>
+                            <p>Freshly roasted single-origin coffee and premium mocktails.</p>
+                            <span class="gourmet-price">From ₹149</span>
+                        </div>
                     </div>
                     <div class="gourmet-card gsap-stagger-card">
-                        <div class="gourmet-img-placeholder"></div>
-                        <h3>In-Theatre Dining</h3>
-                        <p>A full-course luxury meal delivered to your seat.</p>
+                        <div class="gourmet-img" style="background-image: url('assets/HERO PAGE MENU/images.jpg');"></div>
+                        <div class="gourmet-card-body">
+                            <h3>In-Theatre Dining</h3>
+                            <p>A full-course luxury meal delivered directly to your dome seat.</p>
+                            <span class="gourmet-price">From ₹799</span>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Upsell Bridge -->
+                <div class="upsell-bridge gsap-fade-up">
+                    <div class="upsell-bridge-content">
+                        <span class="upsell-icon">🎬</span>
+                        <div>
+                            <strong>Attending a screening?</strong>
+                            <p>Pre-order your cinema combo and have it delivered to your seat — no queues, no waiting.</p>
+                        </div>
+                        <a href="#ticket-booking" class="btn-secondary upsell-btn">Add to My Booking →</a>
+                    </div>
+                </div>
+
                 <div class="gourmet-cta gsap-fade-up">
-                    <a href="#menu" class="btn-primary">View Full Digital Menu</a>
+                    <a href="menu.html" class="btn-primary">View Full Digital Menu</a>
+                    <a href="#reserve-table" class="btn-secondary">Reserve a Table</a>
                 </div>
             </div>
         </section>
 
-        <!-- Section 5: Memorable Event Hosting & Celebrations -->
+        <!-- ===================================================
+             SECTION 6: Table Reservation
+             =================================================== -->
+        <section id="reserve-table" class="reservation-section">
+            <div class="section-container">
+                <div class="reservation-layout">
+                    <div class="reservation-info gsap-slide-left">
+                        <p class="section-eyebrow">Dine With Us</p>
+                        <h2>Reserve a Table</h2>
+                        <p>Whether it's a romantic dinner before your screening or a family feast after, our restaurant is open all day.</p>
+                        <div class="reservation-hours">
+                            <div class="hours-row">
+                                <span>Mon – Thu</span>
+                                <span>10:00 AM – 11:00 PM</span>
+                            </div>
+                            <div class="hours-row">
+                                <span>Fri – Sun</span>
+                                <span>10:00 AM – 1:00 AM</span>
+                            </div>
+                        </div>
+                        <div class="reservation-note">
+                            <span>💡</span>
+                            <p>Dine-in guests get complimentary first-hour access to the Kids Play Zone.</p>
+                        </div>
+                    </div>
+                    <div class="reservation-form-side gsap-slide-right">
+                        <form id="table-form" class="minimal-form" novalidate>
+                            <div class="form-group">
+                                <label for="table-name" class="form-label">Name</label>
+                                <input type="text" id="table-name" placeholder="Your name" required autocomplete="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="table-phone" class="form-label">Phone</label>
+                                <input type="tel" id="table-phone" placeholder="+91 98765 43210" required autocomplete="tel">
+                            </div>
+                            <div class="form-group">
+                                <label for="table-date" class="form-label">Date</label>
+                                <input type="date" id="table-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="table-time" class="form-label">Time Preference</label>
+                                <select id="table-time" required>
+                                    <option value="" disabled selected>Select a time</option>
+                                    <option>10:00 AM – 12:00 PM (Brunch)</option>
+                                    <option>12:00 PM – 3:00 PM (Lunch)</option>
+                                    <option>4:00 PM – 7:00 PM (Evening)</option>
+                                    <option>7:00 PM – 10:00 PM (Dinner)</option>
+                                    <option>10:00 PM – 1:00 AM (Late Night, Fri-Sun only)</option>
+                                </select>
+                            </div>
+                            <div class="form-group seats-group">
+                                <label class="form-label">Party Size</label>
+                                <div class="seat-counter" role="group" aria-label="Select party size">
+                                    <button type="button" id="table-minus" class="seat-btn" aria-label="Decrease party size">−</button>
+                                    <span id="table-count" class="seat-number" aria-live="polite" aria-atomic="true">2</span>
+                                    <button type="button" id="table-plus" class="seat-btn" aria-label="Increase party size">+</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="table-notes" class="form-label">Special Requests</label>
+                                <input type="text" id="table-notes" placeholder="Anniversary, dietary needs, etc.">
+                            </div>
+                            <button type="submit" class="btn-primary">
+                                Confirm Reservation
+                            </button>
+                        </form>
+                        <div id="table-success" class="form-success hidden">
+                            <span class="success-icon">✓</span>
+                            <p>Reservation request received! We'll confirm via WhatsApp within 30 minutes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================
+             SECTION 7: Events & Celebrations
+             =================================================== -->
         <section id="events" class="events-section">
             <div class="section-container">
+                <div class="events-header gsap-fade-up">
+                    <p class="section-eyebrow">Unforgettable Experiences</p>
+                    <h2>Host Your Event Here</h2>
+                </div>
                 <div class="events-split">
                     <div class="event-card kids-card gsap-slide-left">
+                        <div class="event-icon">🎂</div>
                         <div class="event-content">
-                            <h2>Kids Birthday Parties</h2>
-                            <p>Give your child a cinematic celebration. Complete with custom catering, games, and access to our massive playground.</p>
-                            <a href="#contact" class="btn-primary">Get a Quote</a>
+                            <h3>Kids Birthday Parties</h3>
+                            <p>Give your child a cinematic celebration. Custom catering, games, and access to our massive supervised playground. Ages 3–12.</p>
+                            <ul class="event-includes">
+                                <li>✓ Private dome screening</li>
+                                <li>✓ Customised birthday cake</li>
+                                <li>✓ Playground access (2 hrs)</li>
+                                <li>✓ Return gifts for all kids</li>
+                            </ul>
+                            <a href="#contact-form" class="btn-primary event-cta" data-subject="Kids Birthday Party">Get a Quote</a>
                         </div>
                     </div>
                     <div class="event-card corporate-card gsap-slide-right">
+                        <div class="event-icon">🎬</div>
                         <div class="event-content">
-                            <h2>Corporate & Private Events</h2>
+                            <h3>Corporate &amp; Private Events</h3>
                             <p>Host exclusive private screenings or corporate meetings in our state-of-the-art dome with premium dining options.</p>
-                            <a href="#contact" class="btn-secondary">Check Availability</a>
+                            <ul class="event-includes">
+                                <li>✓ Exclusive venue hire</li>
+                                <li>✓ AV &amp; presentation support</li>
+                                <li>✓ Curated catering packages</li>
+                                <li>✓ Dedicated event coordinator</li>
+                            </ul>
+                            <a href="#contact-form" class="btn-secondary event-cta" data-subject="Corporate Event">Check Availability</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 6: Kids' Playground -->
+        <!-- ===================================================
+             SECTION 8: Kids Playground
+             =================================================== -->
         <section id="kids" class="kids-section">
-            <div class="section-container kids-container gsap-fade-up">
-                <div class="kids-content">
-                    <h2>The Parent's Paradise</h2>
-                    <p>Enjoy your meal or movie in complete peace. Our massive, fully supervised indoor play zone gives your kids the time of their lives while you relax.</p>
-                    <a href="#kids" class="btn-primary">Explore Play Zone Rules & Packages</a>
+            <div class="section-container">
+                <div class="kids-container gsap-fade-up">
+                    <div class="kids-content">
+                        <p class="section-eyebrow">Safe. Supervised. Spectacular.</p>
+                        <h2>The Parent's Paradise</h2>
+                        <p>Enjoy your meal or movie in complete peace. Our massive, fully supervised indoor play zone gives your kids the time of their lives while you relax.</p>
+                        <div class="kids-packages">
+                            <div class="kids-package">
+                                <span class="kids-pkg-tag">With Dine-In</span>
+                                <strong>1 Hour Free</strong>
+                            </div>
+                            <div class="kids-package">
+                                <span class="kids-pkg-tag">Extended Play</span>
+                                <strong>₹199 / hr</strong>
+                            </div>
+                            <div class="kids-package">
+                                <span class="kids-pkg-tag">Full Day Pass</span>
+                                <strong>₹499 / child</strong>
+                            </div>
+                        </div>
+                        <a href="#contact-form" class="btn-primary" data-subject="Kids Zone Booking">Book Play Zone</a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 7: Social Proof & Live Buzz -->
+        <!-- ===================================================
+             SECTION 9: Social Proof & Testimonials
+             =================================================== -->
         <section class="social-proof-section">
             <div class="section-container">
                 <div class="social-split">
-                    <div class="social-grid gsap-slide-left">
-                        <div class="insta-post"></div>
-                        <div class="insta-post"></div>
-                        <div class="insta-post"></div>
-                        <div class="insta-post"></div>
-                    </div>
-                    <div class="testimonials gsap-slide-right">
+                    <div class="testimonials gsap-slide-left">
+                        <p class="section-eyebrow">Word of Mouth</p>
                         <h2>What People Say</h2>
                         <div class="testimonial-card">
+                            <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
                             <p>"The 360-degree dome is mind-blowing! Plus, having gourmet food brought to your seat makes it the best movie experience in Kerala."</p>
-                            <span>- Arjun K.</span>
+                            <span>— Arjun K., Kochi</span>
                         </div>
                         <div class="testimonial-card">
+                            <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
                             <p>"Hosted my daughter's 7th birthday here. The kids loved the playground and we loved the hassle-free service. Highly recommend!"</p>
-                            <span>- Meera S.</span>
+                            <span>— Meera S., Ernakulam</span>
                         </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+                            <p>"The coffee alone is worth the visit. But add the dome cinema and you have the most unique evening out in Kerala. We come every weekend."</p>
+                            <span>— Rahul T., Thrissur</span>
+                        </div>
+                    </div>
+                    <div class="social-instagram gsap-slide-right">
+                        <p class="section-eyebrow">@cinecafe.kochi</p>
+                        <h2>Follow the Vibe</h2>
+                        <div class="social-grid">
+                            <!-- Styled placeholder Instagram tiles with venue atmosphere -->
+                            <div class="insta-post" style="background: linear-gradient(135deg, #1a0a2e, #16213e);">
+                                <span class="insta-icon">🎬</span>
+                            </div>
+                            <div class="insta-post" style="background: linear-gradient(135deg, #1b4332, #40916c);">
+                                <span class="insta-icon">🍿</span>
+                            </div>
+                            <div class="insta-post" style="background: linear-gradient(135deg, #5f2121, #967850);">
+                                <span class="insta-icon">☕</span>
+                            </div>
+                            <div class="insta-post" style="background: linear-gradient(135deg, #0d0d0d, #353230);">
+                                <span class="insta-icon">🎂</span>
+                            </div>
+                        </div>
+                        <a href="https://instagram.com/cinecafe.kochi" target="_blank" rel="noopener noreferrer" class="btn-secondary insta-follow-btn">
+                            Follow on Instagram
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 8: Location, Hours, & Quick FAQs -->
+        <!-- ===================================================
+             SECTION 10: Contact, Location & FAQs
+             =================================================== -->
         <section id="contact" class="info-faq-section">
             <div class="section-container">
                 <div class="info-faq-split">
                     <div class="info-column gsap-slide-left">
+                        <p class="section-eyebrow">Find Us</p>
                         <h2>Visit Us</h2>
                         <div class="info-block">
                             <h3>Address</h3>
@@ -275,32 +686,101 @@
                         </div>
                         <div class="info-block">
                             <h3>Operating Hours</h3>
-                            <p>Mon - Thu: 10:00 AM - 11:00 PM<br>Fri - Sun: 10:00 AM - 1:00 AM</p>
+                            <p>Mon – Thu: 10:00 AM – 11:00 PM<br>Fri – Sun: 10:00 AM – 1:00 AM</p>
                         </div>
-                        <div class="map-placeholder">
-                            <span>Interactive Map Placeholder</span>
+                        <div class="info-block">
+                            <h3>Contact</h3>
+                            <p>
+                                <a href="tel:+919876543210" class="info-link">+91 98765 43210</a><br>
+                                <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="info-link whatsapp-link">
+                                    💬 WhatsApp Us
+                                </a><br>
+                                <a href="mailto:hello@cinecafe.in" class="info-link">hello@cinecafe.in</a>
+                            </p>
+                        </div>
+                        <!-- Google Maps Embed -->
+                        <div class="map-embed" aria-label="CineCafe location on Google Maps">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.0!2d76.2673!3d9.9312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwNTUnNTIuMyJOIDc2wrAxNic0Mi4zIkU!5e0!3m2!1sen!2sin!4v1000000000000"
+                                width="100%"
+                                height="250"
+                                style="border:0; border-radius: 12px;"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="CineCafe location map">
+                            </iframe>
                         </div>
                     </div>
                     <div class="faq-column gsap-slide-right">
+                        <p class="section-eyebrow">Got Questions?</p>
                         <h2>Quick FAQs</h2>
-                        <div class="accordion">
-                            <div class="accordion-item">
-                                <button class="accordion-header">Can we eat inside the Dome?</button>
-                                <div class="accordion-content">
-                                    <p>Absolutely! We offer luxury in-theatre dining with our signature cinema combos and full-course meals.</p>
+                        <div class="accordion" role="list">
+                            <div class="accordion-item" role="listitem">
+                                <button class="accordion-header" aria-expanded="false" aria-controls="faq-1">Can we eat inside the Dome?</button>
+                                <div class="accordion-content" id="faq-1" role="region">
+                                    <p>Absolutely! We offer luxury in-theatre dining with our signature cinema combos and full-course meals. Pre-order when booking your ticket for guaranteed seat delivery.</p>
                                 </div>
                             </div>
-                            <div class="accordion-item">
-                                <button class="accordion-header">How do we book a birthday party?</button>
-                                <div class="accordion-content">
-                                    <p>You can book an event directly through our website by requesting a quote or calling our events team.</p>
+                            <div class="accordion-item" role="listitem">
+                                <button class="accordion-header" aria-expanded="false" aria-controls="faq-2">How do we book a birthday party?</button>
+                                <div class="accordion-content" id="faq-2" role="region">
+                                    <p>Fill out the event inquiry form above or WhatsApp us directly. Our events team will get back to you within 2 hours with a custom package quote.</p>
                                 </div>
                             </div>
-                            <div class="accordion-item">
-                                <button class="accordion-header">Is there an entry fee for the playground?</button>
-                                <div class="accordion-content">
-                                    <p>Playground access is complimentary for dine-in and theatre guests for the first hour, with affordable packages for extended play.</p>
+                            <div class="accordion-item" role="listitem">
+                                <button class="accordion-header" aria-expanded="false" aria-controls="faq-3">Is there an entry fee for the playground?</button>
+                                <div class="accordion-content" id="faq-3" role="region">
+                                    <p>Playground access is complimentary for the first hour for all dine-in and theatre guests. Extended play is ₹199/hour, or get the full-day pass at ₹499/child.</p>
                                 </div>
+                            </div>
+                            <div class="accordion-item" role="listitem">
+                                <button class="accordion-header" aria-expanded="false" aria-controls="faq-4">How many seats does the Dome have?</button>
+                                <div class="accordion-content" id="faq-4" role="region">
+                                    <p>The Dome Theatre seats exactly 35 guests per screening for an intimate, exclusive experience. We recommend booking at least 24 hours in advance to avoid disappointment.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item" role="listitem">
+                                <button class="accordion-header" aria-expanded="false" aria-controls="faq-5">Can we do private screenings?</button>
+                                <div class="accordion-content" id="faq-5" role="region">
+                                    <p>Yes! You can hire the entire Dome Theatre for a private screening of your choice — perfect for anniversaries, proposals, or corporate events. Contact us for pricing.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact / Event Inquiry Form -->
+                        <div class="contact-form-wrapper" id="contact-form">
+                            <h3>Send Us a Message</h3>
+                            <form id="inquiry-form" class="minimal-form" novalidate>
+                                <div class="form-group">
+                                    <label for="inq-name" class="form-label">Name</label>
+                                    <input type="text" id="inq-name" placeholder="Your name" required autocomplete="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inq-phone" class="form-label">Phone / WhatsApp</label>
+                                    <input type="tel" id="inq-phone" placeholder="+91 98765 43210" autocomplete="tel">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inq-subject" class="form-label">I'm interested in</label>
+                                    <select id="inq-subject" required>
+                                        <option value="" disabled selected>Select a topic</option>
+                                        <option>Table Reservation</option>
+                                        <option>Dome Theatre Tickets</option>
+                                        <option>Kids Birthday Party</option>
+                                        <option>Corporate / Private Event</option>
+                                        <option>Kids Play Zone</option>
+                                        <option>General Inquiry</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inq-message" class="form-label">Message</label>
+                                    <textarea id="inq-message" placeholder="Tell us more..." rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="btn-primary">Send Message</button>
+                            </form>
+                            <div id="inquiry-success" class="form-success hidden">
+                                <span class="success-icon">✓</span>
+                                <p>Message received! We'll be in touch via WhatsApp within 2 hours.</p>
                             </div>
                         </div>
                     </div>
@@ -310,44 +790,63 @@
 
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer" role="contentinfo">
         <div class="section-container footer-container">
             <div class="footer-brand">
                 <h3>CINECAFE</h3>
                 <p>Taste. Cinema. Atmosphere.</p>
+                <div class="footer-social">
+                    <a href="https://instagram.com/cinecafe.kochi" target="_blank" rel="noopener noreferrer" aria-label="CineCafe on Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="https://facebook.com/cinecafekochi" target="_blank" rel="noopener noreferrer" aria-label="CineCafe on Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" aria-label="CineCafe on WhatsApp">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </a>
+                </div>
             </div>
             <div class="footer-links">
-                <h4>Quick Links</h4>
-                <a href="#menu">Menu</a>
+                <h4>Explore</h4>
+                <a href="menu.html">Menu</a>
                 <a href="#dome">Dome Theatre</a>
                 <a href="#events">Events</a>
                 <a href="#kids">Kids Zone</a>
+                <a href="about.html">About Us</a>
+            </div>
+            <div class="footer-links">
+                <h4>Book</h4>
+                <a href="#ticket-booking">Buy Tickets</a>
+                <a href="#reserve-table">Reserve a Table</a>
+                <a href="#contact-form">Event Inquiry</a>
+                <a href="https://wa.me/919876543210" target="_blank" rel="noopener">WhatsApp Us</a>
+                <a href="tel:+919876543210">+91 98765 43210</a>
             </div>
             <div class="footer-newsletter">
-                <h4>Subscribe for Movie Premieres & Dining Offers</h4>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Your email address" required>
+                <h4>Stay in the Loop</h4>
+                <p class="footer-newsletter-sub">Get notified about upcoming screenings and exclusive dining offers.</p>
+                <form class="newsletter-form" id="newsletter-form" novalidate>
+                    <input type="email" id="newsletter-email" placeholder="Your email address" required autocomplete="email" aria-label="Email address for newsletter">
                     <button type="submit" class="btn-primary">Subscribe</button>
                 </form>
-                <div class="social-icons">
-                    <a href="#">IG</a>
-                    <a href="#">FB</a>
-                    <a href="#">TW</a>
+                <div id="newsletter-success" class="newsletter-success hidden">
+                    <p>✓ You're in! Watch your inbox for upcoming screenings.</p>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 CineCafe. All rights reserved.</p>
+            <p>&copy; 2026 CineCafe. All rights reserved. · <a href="#" class="footer-legal">Privacy Policy</a> · <a href="#" class="footer-legal">Terms of Service</a></p>
         </div>
     </footer>
 
-    <!-- html2canvas for ticket generation (lightweight client-side rendering) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    
+    <!-- html2canvas for ticket generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+
     <!-- GSAP Core & ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
+
     <script src="main.js"></script>
 </body>
 
