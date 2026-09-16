@@ -545,7 +545,7 @@ p {
    Hero Section
    ========================================= */
 .hero-scroll-container {
-    height: 500vh;
+    height: 600vh;
     position: relative;
     z-index: 0;
     background: var(--bg-color);
@@ -2128,7 +2128,7 @@ body.theme-nocturne .form-group textarea {
 
     h2 { margin-bottom: 1.5rem; }
 
-    .hero-scroll-container { height: 400vh; }
+    .hero-scroll-container { height: 500vh; }
 
     .dome-viewport { height: 350vh; }
 

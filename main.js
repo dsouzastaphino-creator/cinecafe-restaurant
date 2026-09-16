@@ -614,9 +614,12 @@ function initTypingSequence() {
         }
     });
 
+    // Add empty space so the last word holds on screen before dome viewport covers it
+    tl.to({}, { duration: 4 });
+
     // Clouds retreat outward
-    tl.to('.cloud-right', { x: '100vw', duration: 3.5, ease: 'power2.inOut' }, 0);
-    tl.to('.cloud-left', { x: '-100vw', duration: 3.5, ease: 'power2.inOut' }, 0);
+    tl.to('.cloud-right', { x: '100vw', duration: 4.5, ease: 'power2.inOut' }, 0);
+    tl.to('.cloud-left', { x: '-100vw', duration: 4.5, ease: 'power2.inOut' }, 0);
 }
 
 /* =========================================
