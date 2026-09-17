@@ -64,6 +64,7 @@ body.theme-nocturne {
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -73,6 +74,8 @@ body {
     transition: background-color var(--transition-slow), color var(--transition-slow);
     line-height: 1.6;
     overflow-x: hidden;
+    width: 100%;
+    position: relative;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -254,7 +257,7 @@ p {
    ========================================= */
 .navbar {
     position: fixed;
-    top: 1.2rem;
+    top: calc(max(1.2rem, env(safe-area-inset-top)));
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
@@ -265,7 +268,7 @@ p {
     -webkit-backdrop-filter: blur(24px);
     border: 1px solid color-mix(in srgb, var(--text-color) 8%, transparent);
     border-radius: 100px;
-    padding: 0.2rem 1.5rem;
+    padding: 0.6rem 1.5rem;
     transition: all var(--transition-med);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
@@ -2184,7 +2187,8 @@ body.theme-nocturne .form-group textarea {
 @media (max-width: 480px) {
     .navbar {
         width: 95%;
-        padding: 0.3rem 1.2rem;
+        padding: 0.6rem 1.2rem;
+        top: calc(max(0.8rem, env(safe-area-inset-top)));
     }
 
     .nav-logo { font-size: 0.95rem; }
