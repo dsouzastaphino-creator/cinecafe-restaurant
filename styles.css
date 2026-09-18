@@ -64,7 +64,6 @@ body.theme-nocturne {
 
 html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
 }
 
 body {
@@ -73,7 +72,7 @@ body {
     color: var(--text-color);
     transition: background-color var(--transition-slow), color var(--transition-slow);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: clip;
     width: 100%;
     position: relative;
     -webkit-font-smoothing: antialiased;
