@@ -62,19 +62,14 @@ body.theme-nocturne {
     box-sizing: border-box;
 }
 
-html,
-body {
-    width: 100%;
-    max-width: 100vw;
-    overflow-x: hidden;
-    position: relative;
-}
-
 html {
     scroll-behavior: smooth;
 }
 
 body {
+    width: 100%;
+    overflow-x: clip;
+    position: relative;
     font-family: var(--font-primary);
     background-color: var(--bg-color);
     color: var(--text-color);
