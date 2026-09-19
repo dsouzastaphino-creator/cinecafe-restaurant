@@ -268,7 +268,7 @@ function initTicketGeneration() {
         submitBtn.disabled = true;
 
         // Show template temporarily for rendering
-        template.style.cssText = 'position: relative; left: auto;';
+        template.style.cssText = 'position: relative; left: auto; opacity: 1; z-index: 1; pointer-events: auto;';
 
         try {
             await new Promise(resolve => setTimeout(resolve, 100));
@@ -280,7 +280,7 @@ function initTicketGeneration() {
             });
 
             // Hide template again
-            template.style.cssText = 'position: absolute; left: -9999px;';
+            template.style.cssText = 'position: absolute; top: 0; left: 0; opacity: 0.01; z-index: -9999; pointer-events: none;';
 
             const img = document.createElement('img');
             img.src = canvas.toDataURL('image/png');
@@ -571,7 +571,7 @@ function initHeroScrollSequence() {
             gsap.to(blurOverlay, {
                 scrollTrigger: {
                     trigger: '.hero-scroll-container',
-                    start: '80% bottom',
+                    start: '90% bottom',
                     end: 'bottom bottom',
                     scrub: true
                 },
@@ -579,7 +579,7 @@ function initHeroScrollSequence() {
                 ease: 'none'
             });
         }
-
+        
         // Switch navbar to dark text when dome section arrives
         ScrollTrigger.create({
             trigger: '.dome-viewport',
@@ -601,7 +601,7 @@ function initTypingSequence() {
         scrollTrigger: {
             trigger: '.hero-scroll-container',
             start: 'top top',
-            end: 'bottom bottom',
+            end: '85% bottom',
             scrub: 1.2
         }
     });
