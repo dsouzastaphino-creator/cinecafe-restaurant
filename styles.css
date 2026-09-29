@@ -616,7 +616,7 @@ p {
 
 .seq-word {
     position: absolute;
-    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-size: clamp(1.8rem, 8vw, 6rem);
     font-weight: 800;
     text-transform: uppercase;
     color: var(--surface-color);
@@ -630,7 +630,7 @@ p {
 }
 
 .seq-word.highlight {
-    font-size: clamp(2.8rem, 9vw, 7rem);
+    font-size: clamp(2rem, 9vw, 7rem);
     background: linear-gradient(
         to bottom right,
         rgba(255, 255, 255, 0.95) 0%,
@@ -2137,6 +2137,11 @@ body.theme-nocturne .form-group textarea {
 
     .hero-scroll-container { height: 500vh; }
 
+    .cinematic-cloud {
+        max-width: none;
+        width: 150vw;
+    }
+
     .dome-viewport { height: 350vh; }
 
     .all-in-one-title { padding: 0 1.5rem; }
@@ -2144,7 +2149,8 @@ body.theme-nocturne .form-group textarea {
     .looking-options { gap: 0.75rem; }
     .option-link { padding: 0.75rem 1.5rem; font-size: 0.9rem; }
 
-    .showtimes-grid {
+    .showtimes-grid,
+    .gourmet-grid {
         grid-template-columns: 1fr;
     }
 
